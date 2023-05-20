@@ -10,6 +10,7 @@ reddit = praw.Reddit(
     password="WorseWorld100",
     username="tankmanlol",
 )
+
 #print("me", reddit.user.me())
 subreddit = reddit.subreddit('TestFlairAPI')
 
@@ -19,10 +20,10 @@ table_client = TableClient.from_connection_string(connection_string, table_name=
 entity = table_client.get_entity(partition_key="pkey", row_key="rkey")
 entities = table_client.query_entities(query_filter="")
 
-# Iterate over the retrieved entities
+#update flair for each player row in table
 for entity in entities:
-    league = entity.get("League")
+    rank = entity.get("Rank")
     tier = entity.get("Tier")
     redditname = entity.get("RedditName")
-    print(league, tier)
-    subreddit.flair.set(redditname, text=league + " " + tier)
+    print(redditname, tier, rank)
+    subreddit.flair.set(redditname, text=tier + " " + rank)
