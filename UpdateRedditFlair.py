@@ -7,8 +7,8 @@ reddit = praw.Reddit(
     client_id="Zh6i1cNyql4l0EsG9_vLfw",
     client_secret="IEHHOuWv9MR7A9qv8NOwyPClhha8Mw",
     user_agent="RedditFlairGuy",
-    password="WorseWorld100",
-    username="tankmanlol",
+    password="APItest123",
+    username="mod_account_123",
 )
 
 #print("me", reddit.user.me())
