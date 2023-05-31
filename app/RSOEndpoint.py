@@ -1,6 +1,6 @@
 print("test 1")
 from flask import Flask, request
-from DependencyList import oauth_client_secret, oauth_client_id, riot_api_key, connection_string
+from DependencyList import oauth_client_secret, oauth_client_id, riot_api_key, connection_string, app_callback_url, app_route
 import requests
 import json
 from azure.data.tables import TableClient, UpdateMode
@@ -19,7 +19,7 @@ table_client = TableClient.from_connection_string(connection_string, table_name=
 app = Flask(__name__)
 print("rso endpoint")
 
-@app.route('/account/connect/riotgames/oauth-callback')
+@app.route(app_route)
 def index():
     if "code" not in request.args:
         return "no access code"
@@ -39,7 +39,6 @@ def index():
     for entity in entities:
         print("table entity", entity)
 
-        app_callback_url = "https://www.legendsofleague.gg/account/connect/riotgames/oauth-callback"
         provider = "https://auth.riotgames.com"
         token_url = provider + "/token"
         auth_=(oauth_client_id, oauth_client_secret)
